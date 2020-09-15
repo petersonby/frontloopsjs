@@ -2,13 +2,75 @@
 <html>
 <head>
     <title>Progress navigation</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <!--
-        Create Tabs component, that has several tab buttons. Each button toggles active tab content.
-        Add a text input with a button. User can enter any tab index in the input and toggle it by clicking the button.
-        Indexes in this task are not the same as they are used in JS, so by entering 1 - first tab should be shown, not 0.
-        If invalid index is entered - browser must show an alert.
-    -->
+    <div class="container">
+        <form action="" class="form">
+            <input type="number" class="form__input" placeholder="Enter tab index">
+            <button class="form__button">Change tab</button>
+        </form>
+
+        <ul class="list">
+            <li class="list__item active" data-value="1">positive</li>
+            <li class="list__item" data-value="2">negative</li>
+            <li class="list__item" data-value="3">neutral</li>
+        </ul>
+    
+        <div class="tabs">
+            <div class="tabs__item active" data-value="1">Positive content</div>
+            <div class="tabs__item" data-value="2">Negative content</div>
+            <div class="tabs__item" data-value="3">Neutral content</div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('.form');
+        const input = document.querySelector('.form__input');
+        const list_items = document.querySelectorAll('.list__item');
+        const tab_items = document.querySelectorAll('.tabs__item');
+
+        function removeActiveTab() {
+            list_items.forEach(item => {
+                if(item.classList.contains('active')) {
+                    item.classList.remove('active');
+                }
+            });
+
+            tab_items.forEach(item => {
+                if(item.classList.contains('active')) {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const input_value = input.value;
+            const active_tab_name = [...list_items].find(tab => tab.dataset.value == input_value);
+            const active_tab = [...tab_items].find(tab => tab.dataset.value == input_value);
+            
+            if (active_tab && active_tab_name) {
+                removeActiveTab();
+                active_tab.classList.add('active');
+                active_tab_name.classList.add('active');
+            } else {
+                alert('error, tab not found');
+            }
+        })
+
+        list_items.forEach(item => {
+            item.addEventListener('click', () => {
+                removeActiveTab();
+
+                item.classList.add('active');
+
+                const active_tab = [...tab_items].find(tab => tab.dataset.value == item.dataset.value);
+
+                active_tab.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
