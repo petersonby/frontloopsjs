@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <title>Auto type</title>
+</head>
+<style>
+    body {
+        background-color: #f4a460;
+        margin: 0;
+        padding: 50px 0 0 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        font-size: 48px;
+    }
+
+    .phrase span::after {
+        content: '|';
+        position: relative;
+        top: -5px;
+        animation: pulse 1.3s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+<body>
+    <p class="phrase">Вы все самые <span></span></p>
+
+    <script>
+        const words = ['лучшие', 'классные', 'красивые', 'замечательные', 'кошачие'];
+        const space = document.querySelector('.phrase span');
+        
+        words.forEach((word, index) => {
+            setTimeout(() => {
+                let array_of_letters = word.split('');
+
+                array_of_letters.forEach((letter, i) => {
+                    setTimeout(() => {
+                        space.innerHTML += letter;
+                    }, 300 * i)
+
+                    if(i == letter.length - 1) {
+                        space.innerHTML = '';
+                    }
+                });
+
+            }, 300 * word.length * index);
+        })
+    </script>
+</body>
+</html>
