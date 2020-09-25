@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Progress navigation</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <!--
@@ -10,5 +11,42 @@
         Steps in overview should be also clickable and change current step to the one click,
         however you shouldn't be able to skip the next step, so if you're at 1 step - you can't go directly to 3.
     -->
+
+    <div class="container">
+        <ul class="list">
+            <li class="active"><button>Choose title</button></li>
+            <li><button>Choose description</button></li>
+            <li><button>Choose your side</button></li>
+        </ul>
+
+        <div class="tabs">
+            <div class="tabs__item active">
+                <p>Choose title content</p>
+                <div class="tabs__btns">
+                    <button class="btn next-btn">Next</button>
+                </div>
+            </div>
+
+            <div class="tabs__item">
+                <p>Choose descr content</p>
+                <div class="tabs__btns">
+                    <button class="btn prev-btn">Prev</button>
+                    <button class="btn next-btn">Next</button>
+                </div>
+            </div>
+
+            <div class="tabs__item">
+                <p>Choose side content</p>
+                <div class="tabs__btns">
+                    <button class="btn prev-btn">Prev</button>
+                    <button class="btn next-btn">Next</button>
+                </div>
+            </div>
+
+            <div class="tabs__item">
+                <p>Final tab</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
